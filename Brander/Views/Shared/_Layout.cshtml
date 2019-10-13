@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Brander</title>
 
+    @*añadimos font asome aca*@
+    <script src="https://kit.fontawesome.com/43d590f844.js"></script>
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        @*<script src="https://kit.fontawesome.com/43d590f844.js"></script>*@
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        @*<script src="https://kit.fontawesome.com/43d590f844.js"></script>*@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
+<body class="search-background">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Brander</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -29,11 +34,24 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Gestión de contenido
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                                @*<a class="dropdown-item" asp-action="Index" asp-controller="Category" asp-area="Admin"> Categoria</a>*@
+                                @*<a class="dropdown-item" asp-action="Index" asp-controller="SubCategory" asp-area="Admin"> Sub Categoria</a>*@
+                                @*<a class="dropdown-item" asp-action="Index" asp-controller="MenuItem" asp-area="Admin"> Elementos de menú</a>*@
+                                <a class="dropdown-item"> Cupones</a>
+                                <a class="dropdown-item"> Usuarios</a>
+                            </div>
+                        </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacidad">Privacy</a>
                         </li>
                     </ul>
                 </div>
@@ -47,17 +65,19 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top pl-3 footer text-white-50" style="background-color: #343a40">
         <div class="container">
             &copy; 2019 - Brander - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
 
     <environment include="Development">
+        <script src="https://cdn.tiny.cloud/1/xmu9wpotut0kd5iyenmk1m5b10lbp65i0blu36xn1c2u4toj/tinymce/5/tinymce.min.js"></script>
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </environment>
     <environment exclude="Development">
+        <script src="https://cdn.tiny.cloud/1/xmu9wpotut0kd5iyenmk1m5b10lbp65i0blu36xn1c2u4toj/tinymce/5/tinymce.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"

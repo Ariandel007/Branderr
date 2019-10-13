@@ -66,11 +66,13 @@ namespace Brander
 
             app.UseAuthentication();
 
+            //Una ruta en una ASP MVC aplication ya esta definida aca, cada cambio de ruta debera ser represtando, lo modifcaremos al agregar varias areas ya que queremos desarrollar
+            //el proyecto desde ahi, lo olvidar seoparar por slash
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    name: "areas",
+                    template: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

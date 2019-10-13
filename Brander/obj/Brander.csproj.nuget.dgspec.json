@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Proyectos\\Proyectos-Para-Pottafolio\\TF-Evolucion\\Brander\\Brander\\Brander.csproj": {}
+    "E:\\Proyectos\\Evolucion-TF\\Branderr\\Brander\\Brander.csproj": {}
   },
   "projects": {
-    "E:\\Proyectos\\Proyectos-Para-Pottafolio\\TF-Evolucion\\Brander\\Brander\\Brander.csproj": {
+    "E:\\Proyectos\\Evolucion-TF\\Branderr\\Brander\\Brander.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Proyectos\\Proyectos-Para-Pottafolio\\TF-Evolucion\\Brander\\Brander\\Brander.csproj",
+        "projectUniqueName": "E:\\Proyectos\\Evolucion-TF\\Branderr\\Brander\\Brander.csproj",
         "projectName": "Brander",
-        "projectPath": "E:\\Proyectos\\Proyectos-Para-Pottafolio\\TF-Evolucion\\Brander\\Brander\\Brander.csproj",
+        "projectPath": "E:\\Proyectos\\Evolucion-TF\\Branderr\\Brander\\Brander.csproj",
         "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
-        "outputPath": "E:\\Proyectos\\Proyectos-Para-Pottafolio\\TF-Evolucion\\Brander\\Brander\\obj\\",
+        "outputPath": "E:\\Proyectos\\Evolucion-TF\\Branderr\\Brander\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
             }
           },
           "imports": [

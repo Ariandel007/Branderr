@@ -8,6 +8,7 @@ using Brander.Models;
 
 namespace Brander.Controllers
 {
+    [Area("Customer")]//definidmos a que area pertenece este controlador
     public class HomeController : Controller
     {
         public IActionResult Index()
