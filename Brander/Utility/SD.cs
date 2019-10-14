@@ -7,6 +7,6 @@ namespace Brander.Utility
 {
     public class SD
     {
-        public const string DefaultFoodImage = "default_game.png";
+        public const string DefaultGameImage = "default_game.png";
     }
 }

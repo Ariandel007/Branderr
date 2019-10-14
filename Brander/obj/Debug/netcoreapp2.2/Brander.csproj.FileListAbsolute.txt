@@ -116,3 +116,8 @@ E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\A
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\SubCategory\Details.g.cshtml.cs
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\SubCategory\Delete.g.cshtml.cs
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\SubCategory\Create.g.cshtml.cs
+E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Game\Index.g.cshtml.cs
+E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Game\Create.g.cshtml.cs
+E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Game\Edit.g.cshtml.cs
+E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Game\Details.g.cshtml.cs
+E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Game\Delete.g.cshtml.cs
