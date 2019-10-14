@@ -1,0 +1,13 @@
+﻿@model int
+
+<div class="row">
+    <div class="col-6">
+        @*Aqui ya no sera necesariomodel Model.Id *@
+        @*Ponemos un asp action que reotorne a la vista Edit*@
+        <a asp-action="Edit" asp-route-id="@Model" class="btn btn-info form-control">Editar</a>
+    </div>
+
+    <div class="col-6">
+        <a asp-action="Index" class="btn btn-success form-control">Volver</a>
+    </div>
+</div>
