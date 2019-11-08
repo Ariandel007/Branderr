@@ -15,7 +15,7 @@ namespace Brander.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,6 +31,49 @@ namespace Brander.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("Brander.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Avaible");
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<int>("GameId");
+
+                    b.Property<int>("Stars");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Brander.Models.Coupon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .IsRequired();
+
+                    b.Property<double>("Disccount");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coupons");
                 });
 
             modelBuilder.Entity("Brander.Models.Game", b =>
@@ -59,6 +102,95 @@ namespace Brander.Data.Migrations
                     b.ToTable("Game");
                 });
 
+            modelBuilder.Entity("Brander.Models.Key", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("GameId");
+
+                    b.Property<double>("Price");
+
+                    b.Property<int>("StockId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("StockId");
+
+                    b.ToTable("Key");
+                });
+
+            modelBuilder.Entity("Brander.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CouponId");
+
+                    b.Property<double>("IGV");
+
+                    b.Property<DateTime>("OrderDate");
+
+                    b.Property<double>("OrderTotal");
+
+                    b.Property<double>("OrderTotalOriginal");
+
+                    b.Property<bool>("PaymentStatus");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CouponId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Brander.Models.OrderDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("KeyId");
+
+                    b.Property<int>("OrderId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KeyId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("Brander.Models.Stock", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<double>("Price");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<string>("Region")
+                        .IsRequired();
+
+                    b.Property<int>("SupplierId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("Stocks");
+                });
+
             modelBuilder.Entity("Brander.Models.SubCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -75,6 +207,24 @@ namespace Brander.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("SubCategory");
+                });
+
+            modelBuilder.Entity("Brander.Models.Supplier", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired();
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("Email");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -242,6 +392,14 @@ namespace Brander.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Brander.Models.Comment", b =>
+                {
+                    b.HasOne("Brander.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Brander.Models.Game", b =>
                 {
                     b.HasOne("Brander.Models.Category", "Category")
@@ -252,6 +410,48 @@ namespace Brander.Data.Migrations
                     b.HasOne("Brander.Models.SubCategory", "SubCategory")
                         .WithMany()
                         .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Brander.Models.Key", b =>
+                {
+                    b.HasOne("Brander.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Brander.Models.Stock", "Stock")
+                        .WithMany()
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Brander.Models.Order", b =>
+                {
+                    b.HasOne("Brander.Models.Coupon", "Coupon")
+                        .WithMany()
+                        .HasForeignKey("CouponId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Brander.Models.OrderDetails", b =>
+                {
+                    b.HasOne("Brander.Models.Key", "Key")
+                        .WithMany()
+                        .HasForeignKey("KeyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Brander.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Brander.Models.Stock", b =>
+                {
+                    b.HasOne("Brander.Models.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

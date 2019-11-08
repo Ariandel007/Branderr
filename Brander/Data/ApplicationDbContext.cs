@@ -23,5 +23,19 @@ namespace Brander.Data
         public DbSet<SubCategory> SubCategory { get; set; }
 
         public DbSet<Game> Game { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Supplier> Suppliers { get; set; }
+
+        public DbSet<Stock> Stocks { get; set; }
+
+        public DbSet<Coupon> Coupons { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Key> Key { get; set; }
+
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }
