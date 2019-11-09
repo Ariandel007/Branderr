@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Brander.Models;
+using Brander.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -20,16 +22,22 @@ namespace Brander.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        //roleManager
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -51,9 +59,20 @@ namespace Brander.Areas.Identity.Pages.Account
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmar password")]
+            [Compare("Password", ErrorMessage = "El password y su confirmado no existen.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Nombre")]
+            public string Name { get; set; }
+
+            [Display(Name = "Ciudad")]
+            public string City { get; set; }
+
+            [Display(Name = "Pais")]
+            public string Country { get; set; }
+
         }
 
         public void OnGet(string returnUrl = null)
@@ -63,14 +82,54 @@ namespace Brander.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+             string role = Request.Form["rdUserRole"].ToString();
+
+
             returnUrl = returnUrl ?? Url.Content("~/");
+
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    Name = Input.Name,
+                    City = Input.City,
+                    Country = Input.Country,
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    if (!await _roleManager.RoleExistsAsync(SD.ManagerUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.ManagerUser));
+                    }
+                    if (!await _roleManager.RoleExistsAsync(SD.CustomerEndUser))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.CustomerEndUser));
+                    }
+
+                    //esto pa la primera vez
+                    //await _userManager.AddToRoleAsync(user, SD.ManagerUser);
+
+                    //esto pa despues
+
+                    if (role == SD.ManagerUser)
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.ManagerUser);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.CustomerEndUser);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return LocalRedirect(returnUrl);
+                    }
+
+
+
+                    return RedirectToAction("Index", "User", new { area = "Admin" });
+
+                    _logger.LogInformation("El usuario creó una nueva cuenta con contraseña.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(
@@ -79,19 +138,19 @@ namespace Brander.Areas.Identity.Pages.Account
                         values: new { userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "confirme su email",
+                        $"Por favor confirme su cuenta por <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clickeando aqui</a>.");
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+
                 }
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+
             }
 
-            // If we got this far, something failed, redisplay form
+            // Si llegamos hasta aquí, algo fallo, volver a mostrar la pagina
             return Page();
         }
     }

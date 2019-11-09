@@ -37,7 +37,6 @@ E:\Proyectos\Evolucion-TF\Branderr\Brander\bin\Debug\netcoreapp2.2\Brander.dll
 E:\Proyectos\Evolucion-TF\Branderr\Brander\bin\Debug\netcoreapp2.2\Brander.pdb
 E:\Proyectos\Evolucion-TF\Branderr\Brander\bin\Debug\netcoreapp2.2\Brander.Views.dll
 E:\Proyectos\Evolucion-TF\Branderr\Brander\bin\Debug\netcoreapp2.2\Brander.Views.pdb
-E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Brander.csprojAssemblyReference.cache
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Brander.RazorAssemblyInfo.cache
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Brander.RazorAssemblyInfo.cs
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Brander.AssemblyInfoInputs.cache
