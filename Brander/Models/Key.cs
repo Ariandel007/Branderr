@@ -12,9 +12,9 @@ namespace Brander.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [Display(Name = "Precio")]
-        public double Price { get; set; }
+        //[Required]
+        //[Display(Name = "Precio")]
+        //public double Price { get; set; }
 
 
 

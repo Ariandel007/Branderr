@@ -91,6 +91,8 @@ namespace Brander.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<double>("Price");
+
                     b.Property<int>("SubCategoryId");
 
                     b.HasKey("Id");
@@ -109,8 +111,6 @@ namespace Brander.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("GameId");
-
-                    b.Property<double>("Price");
 
                     b.Property<int>("StockId");
 

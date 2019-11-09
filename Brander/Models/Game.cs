@@ -33,5 +33,10 @@ namespace Brander.Models
         [ForeignKey("SubCategoryId")]
         public virtual SubCategory SubCategory { get; set; }
 
+
+        [Required]
+        [Display(Name = "Precio")]
+        public double Price { get; set; }
+
     }
 }
