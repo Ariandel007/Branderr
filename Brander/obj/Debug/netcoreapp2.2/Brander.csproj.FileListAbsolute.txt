@@ -306,3 +306,4 @@ E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Views\S
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.cshtml.g.cs
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.cshtml.g.cs
+E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs

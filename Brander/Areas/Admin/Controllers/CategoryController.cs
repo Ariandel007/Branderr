@@ -4,12 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Brander.Data;
 using Brander.Models;
+using Brander.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Brander.Areas.Admin.Controllers
 {
     [Area("Admin")]//ahora el controlador es alcanzable
+    [Authorize(Roles = SD.ManagerUser)]
+
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;//aplicaremos inyeccion de dependencias

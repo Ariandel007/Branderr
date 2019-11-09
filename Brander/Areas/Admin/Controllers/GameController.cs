@@ -9,11 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Brander.Data;
 using Brander.Models.ViewModels;
 using Brander.Utility;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Brander.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.ManagerUser)]
     public class GameController : Controller
     {
         private readonly ApplicationDbContext _db;

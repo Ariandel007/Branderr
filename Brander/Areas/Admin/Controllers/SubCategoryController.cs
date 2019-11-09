@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Brander.Data;
 using Brander.Models;
 using Brander.Models.ViewModels;
+using Brander.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Brander.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.ManagerUser)]
     public class SubCategoryController : Controller
     {
         private readonly ApplicationDbContext _db;//aplicaremos inyeccion de dependencias
