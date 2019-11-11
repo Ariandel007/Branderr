@@ -1,4 +1,7 @@
 ﻿@using Brander.Utility
+@using Microsoft.AspNetCore.Http
+
+@inject IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
 <html>
@@ -37,18 +40,39 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
 
-                        @if (User.IsInRole(SD.ManagerUser)) {
-                        <li class="nav-item dropdown text-white-50">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Gestión de contenido
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                                <a class="dropdown-item" asp-action="Index" asp-controller="Category" asp-area="Admin"> Categoria</a>
-                                <a class="dropdown-item" asp-action="Index" asp-controller="SubCategory" asp-area="Admin"> Sub categoria</a>
-                                <a class="dropdown-item" asp-action="Index" asp-controller="Game" asp-area="Admin"> Juegos</a>
-                                <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Admin"> Usuarios</a>
-                            </div>
-                        </li>
+                        @if (User.IsInRole(SD.ManagerUser))
+                        {
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Gestión de contenido
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-action="Index" asp-controller="Category" asp-area="Admin"> Categoria</a>
+                                    <a class="dropdown-item" asp-action="Index" asp-controller="SubCategory" asp-area="Admin"> Sub categoria</a>
+                                    <a class="dropdown-item" asp-action="Index" asp-controller="Game" asp-area="Admin"> Juegos</a>
+                                    <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Admin"> Usuarios</a>
+                                </div>
+                            </li>
+                        }
+
+                        @if (HttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount) != null)
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount);
+                                    }
+                                    <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="color:white">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                                </a>
+                            </li>
                         }
 
 

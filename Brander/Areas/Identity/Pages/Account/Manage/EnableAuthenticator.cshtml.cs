@@ -47,9 +47,9 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required]
-            [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(7, ErrorMessage = "El {0} debe ser de almenos {2} y como maximo {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Text)]
-            [Display(Name = "Verification Code")]
+            [Display(Name = "Código de verificación")]
             public string Code { get; set; }
         }
 
@@ -58,7 +58,7 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se puede cargar al usuario con ID'{_userManager.GetUserId(User)}'.");
             }
 
             await LoadSharedKeyAndQrCodeUriAsync(user);
@@ -71,7 +71,7 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se puede cargar al usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -88,16 +88,16 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
 
             if (!is2faTokenValid)
             {
-                ModelState.AddModelError("Input.Code", "Verification code is invalid.");
+                ModelState.AddModelError("Input.Code", "El código de verificación no es válido.");
                 await LoadSharedKeyAndQrCodeUriAsync(user);
                 return Page();
             }
 
             await _userManager.SetTwoFactorEnabledAsync(user, true);
             var userId = await _userManager.GetUserIdAsync(user);
-            _logger.LogInformation("User with ID '{UserId}' has enabled 2FA with an authenticator app.", userId);
+            _logger.LogInformation("Usuario con ID'{UserId}' ha habilitado 2FA con una aplicación de autenticación.", userId);
 
-            StatusMessage = "Your authenticator app has been verified.";
+            StatusMessage = "Su aplicación de autenticación ha sido verificada.";
 
             if (await _userManager.CountRecoveryCodesAsync(user) == 0)
             {

@@ -30,12 +30,12 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se puede cargar al usuario con ID'{_userManager.GetUserId(User)}'.");
             }
 
             if (!await _userManager.GetTwoFactorEnabledAsync(user))
             {
-                throw new InvalidOperationException($"Cannot disable 2FA for user with ID '{_userManager.GetUserId(User)}' as it's not currently enabled.");
+                throw new InvalidOperationException($"No se puede deshabilitar 2FA para usuarios con ID '{_userManager.GetUserId(User)}' ya que no está habilitado actualmente.");
             }
 
             return Page();
@@ -46,17 +46,17 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se puede cargar al usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var disable2faResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
             if (!disable2faResult.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred disabling 2FA for user with ID '{_userManager.GetUserId(User)}'.");
+                throw new InvalidOperationException($"Se produjo un error inesperado al deshabilitar 2FA para el usuario con ID'{_userManager.GetUserId(User)}'.");
             }
 
-            _logger.LogInformation("User with ID '{UserId}' has disabled 2fa.", _userManager.GetUserId(User));
-            StatusMessage = "2fa has been disabled. You can reenable 2fa when you setup an authenticator app";
+            _logger.LogInformation("Usuario con ID'{UserId}' ha deshabilitado 2fa.", _userManager.GetUserId(User));
+            StatusMessage = "2fa ha sido deshabilitado. Puede habilitar 2fa cuando configura una aplicación de autenticación";
             return RedirectToPage("./TwoFactorAuthentication");
         }
     }

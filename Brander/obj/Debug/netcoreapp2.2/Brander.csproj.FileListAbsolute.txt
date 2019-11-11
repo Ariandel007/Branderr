@@ -308,3 +308,5 @@ E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Views\_
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.cshtml.g.cs
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs
 E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ThumbnailAreaPartial.cshtml.g.cs
+E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Brander.csprojAssemblyReference.cache
+E:\Proyectos\Evolucion-TF\Branderr\Brander\obj\Debug\netcoreapp2.2\Razor\Areas\Customer\Views\Home\Details.cshtml.g.cs

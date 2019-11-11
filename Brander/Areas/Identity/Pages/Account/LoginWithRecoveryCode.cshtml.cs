@@ -33,7 +33,7 @@ namespace Brander.Areas.Identity.Pages.Account
             [BindProperty]
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
+            [Display(Name = "Código de recuperación")]
             public string RecoveryCode { get; set; }
         }
 
@@ -43,7 +43,7 @@ namespace Brander.Areas.Identity.Pages.Account
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                throw new InvalidOperationException($"No se puede cargar el usuario de autenticación de dos factores.");
             }
 
             ReturnUrl = returnUrl;
@@ -61,7 +61,7 @@ namespace Brander.Areas.Identity.Pages.Account
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                throw new InvalidOperationException($"No se puede cargar el usuario de autenticación de dos factores.");
             }
 
             var recoveryCode = Input.RecoveryCode.Replace(" ", string.Empty);
@@ -70,18 +70,18 @@ namespace Brander.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID '{UserId}' logged in with a recovery code.", user.Id);
+                _logger.LogInformation("Usuario con ID '{UserId}' conectado con un código de recuperación.", user.Id);
                 return LocalRedirect(returnUrl ?? Url.Content("~/"));
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID '{UserId}' account locked out.", user.Id);
+                _logger.LogWarning("Usuario con ID '{UserId}' cuenta bloqueada.", user.Id);
                 return RedirectToPage("./Lockout");
             }
             else
             {
-                _logger.LogWarning("Invalid recovery code entered for user with ID '{UserId}' ", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
+                _logger.LogWarning("Código de recuperación no válido ingresado para el usuario con ID '{UserId}' ", user.Id);
+                ModelState.AddModelError(string.Empty, "Se ingresó un código de recuperación no válido.");
                 return Page();
             }
         }

@@ -44,7 +44,7 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
             public string Email { get; set; }
 
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Numero de Telefono")]
             public string PhoneNumber { get; set; }
         }
 
@@ -53,7 +53,7 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se puede cargar al usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var userName = await _userManager.GetUserNameAsync(user);
@@ -83,7 +83,7 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se puede cargar al usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var email = await _userManager.GetEmailAsync(user);
@@ -93,7 +93,7 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
                 if (!setEmailResult.Succeeded)
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
+                    throw new InvalidOperationException($"Se produjo un error inesperado al configurar el correo electrónico para el usuario con ID '{userId}'.");
                 }
             }
 
@@ -104,12 +104,12 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
                 if (!setPhoneResult.Succeeded)
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
+                    throw new InvalidOperationException($"Se produjo un error inesperado al configurar el número de teléfono del usuario con ID '{userId}'.");
                 }
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Tu perfil ha sido actualizado";
             return RedirectToPage();
         }
 
@@ -123,7 +123,7 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se puede cargar al usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
 
@@ -137,10 +137,10 @@ namespace Brander.Areas.Identity.Pages.Account.Manage
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Confirme su email",
+                $"Por favor confirme su cuenta por <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>haciendo clic aquí</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "El mensaje de verificación ha sido enviado. Por favor revise su correo electrónico.";
             return RedirectToPage();
         }
     }

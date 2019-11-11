@@ -33,12 +33,12 @@ namespace Brander.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(7, ErrorMessage = "El {0} debe tener al menos {2} y un máximo de {1} caracteres de longitud.", MinimumLength = 6)]
             [DataType(DataType.Text)]
-            [Display(Name = "Authenticator code")]
+            [Display(Name = "Código de autenticación")]
             public string TwoFactorCode { get; set; }
 
-            [Display(Name = "Remember this machine")]
+            [Display(Name = "Recuerda esta maquina")]
             public bool RememberMachine { get; set; }
         }
 
@@ -49,7 +49,7 @@ namespace Brander.Areas.Identity.Pages.Account
 
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                throw new InvalidOperationException($"No se puede cargar el usuario de autenticación de dos factores.");
             }
 
             ReturnUrl = returnUrl;
@@ -70,7 +70,7 @@ namespace Brander.Areas.Identity.Pages.Account
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                throw new InvalidOperationException($"No se puede cargar el usuario de autenticación de dos factores.");
             }
 
             var authenticatorCode = Input.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
@@ -79,18 +79,18 @@ namespace Brander.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", user.Id);
+                _logger.LogInformation("Usuario con ID '{UserId}' inicia sesión con 2fa.", user.Id);
                 return LocalRedirect(returnUrl);
             }
             else if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID '{UserId}' account locked out.", user.Id);
+                _logger.LogWarning("Usuario con ID '{UserId}' cuenta bloqueada", user.Id);
                 return RedirectToPage("./Lockout");
             }
             else
             {
-                _logger.LogWarning("Invalid authenticator code entered for user with ID '{UserId}'.", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
+                _logger.LogWarning("Código de autenticador no válido ingresado para el usuario con ID '{UserId}'.", user.Id);
+                ModelState.AddModelError(string.Empty, "Código de autenticador no válido.");
                 return Page();
             }
         }

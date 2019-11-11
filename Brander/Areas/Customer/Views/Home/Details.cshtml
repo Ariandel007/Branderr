@@ -1,0 +1,98 @@
+﻿@model Brander.Models.ShoppingCart
+@using Brander.Extensions
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Detalles</h2>
+<br />
+
+<form method="post">
+    <div class="border backgroundWhite row">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12 pb-4 d-md-none">
+            <img src="@Model.Game.Image" width="100%" style="border-radius:5px;border: 1px solid #bbb9b9;" />
+        </div>
+        <div class="col-md-8">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Game.Name" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Game.Name" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Game.Description" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <div class="border p-2">
+                        @Html.Raw(Model.Game.Description)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Game.Price" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Game.Price" readonly class="form-control" />
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Game.CategoryId" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Game.Category.Name" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Game.SubCategoryId" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Game.SubCategory.Name" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Count" class="text-info font-weight-bold"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Count" class="form-control" />
+                    <span asp-validation-for="Count" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <a asp-action="Index" class="btn btn-success form-control">Regresar</a>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" value="Add to Cart" class="btn btn-primary form-control">Añadir al carrito</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 offset-1 d-none d-md-block">
+            <img src="@Model.Game.Image" width="100%" style="border-radius:5px;border: 1px solid #bbb9b9;" />
+        </div>
+
+
+
+    </div>
+    <input asp-for="GameId" hidden />
+</form>
+
+@section Scripts{
+
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

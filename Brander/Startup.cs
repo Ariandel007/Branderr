@@ -44,6 +44,15 @@ namespace Brander
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //sesiones
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true;
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +73,9 @@ namespace Brander
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+    
+            //sesiones
+            app.UseSession();
 
             app.UseAuthentication();
 

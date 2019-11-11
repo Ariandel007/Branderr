@@ -167,6 +167,23 @@ namespace Brander.Data.Migrations
                     b.ToTable("OrderDetails");
                 });
 
+            modelBuilder.Entity("Brander.Models.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("Count");
+
+                    b.Property<int>("GameId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShoppingCart");
+                });
+
             modelBuilder.Entity("Brander.Models.Stock", b =>
                 {
                     b.Property<int>("Id")

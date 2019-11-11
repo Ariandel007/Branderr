@@ -9,6 +9,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Brander.Data;
+using Brander.Models;
+using Microsoft.EntityFrameworkCore;
+using Brander.Utility;
+using Microsoft.AspNetCore.Http;
 
 namespace Brander.Areas.Identity.Pages.Account
 {
@@ -17,11 +22,15 @@ namespace Brander.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        //
+        private readonly ApplicationDbContext _db;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, ApplicationDbContext db)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _db = db;
+
         }
 
         [BindProperty]
@@ -44,7 +53,7 @@ namespace Brander.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Recuérdame?")]
             public bool RememberMe { get; set; }
         }
 
@@ -76,7 +85,14 @@ namespace Brander.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    var user = await _db.Users.Where(u => u.Email == Input.Email).FirstOrDefaultAsync();
+
+                    List<ShoppingCart> lstShoppingCart = await _db.ShoppingCart.Where(u => u.ApplicationUserId == user.Id).ToListAsync();
+
+                    HttpContext.Session.SetInt32(SD.ssShoppingCartCount, lstShoppingCart.Count);
+
+
+                    _logger.LogInformation("Usuario conectado.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -85,12 +101,12 @@ namespace Brander.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("Cuenta de usuario bloqueada.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Intento de inicio de sesión no válido.");
                     return Page();
                 }
             }

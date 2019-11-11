@@ -55,8 +55,8 @@ namespace Brander.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "Restablecer la contraseña",
+                    $"Por favor restablezca su contraseña por <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clickeando aqui</a>.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

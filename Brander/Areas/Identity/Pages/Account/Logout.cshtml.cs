@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Brander.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -29,14 +31,15 @@ namespace Brander.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            HttpContext.Session.SetInt32(SD.ssShoppingCartCount, 0);
+            _logger.LogInformation("Usuario desconectado.");
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);
             }
             else
             {
-                return Page();
+                return RedirectToPage("Cerrar sesión");
             }
         }
     }
