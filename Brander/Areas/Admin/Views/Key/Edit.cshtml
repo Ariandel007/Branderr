@@ -1,0 +1,71 @@
+﻿@model Brander.Models.ViewModels.KeyViewModel
+@using Brander.Extensions
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-white">Editar Key</h2>
+<br />
+
+
+<div class="border backgroundWhite row">
+
+    <div class="col-8 border-right">
+        @*Indicamos en el metodo el verbo que se relizara(en este caso un post)*@
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Key.StockId" />
+            <input type="hidden" asp-for="Key.GameId" />
+            @*Para que se tenga siempre en cuenta la id del proveedor*@
+            <input type="hidden" asp-for="Key.Id" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="Key.StockId" class="col-form-label"></label>
+                </div>
+                @*Lista de items a seleccionar*@
+                <div class="col-5">
+                    <select id="ddlStocklist" asp-for="Key.StockId" asp-items="Model.StockList.ToSelectedItem(Model.Key.StockId)" class="form-control"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="Key.GameId" class="col-form-label"></label>
+                </div>
+                @*Lista de items a seleccionar*@
+                <div class="col-5">
+                    <select id="ddlGamelist" asp-for="Key.GameId" asp-items="Model.GameList.ToSelectedItem(Model.Key.GameId)" class="form-control"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="Key.Price" class="col-form-label"></label>
+                </div>
+                <div class="col-5">
+                    <input asp-for="Key.Price" class="form-control"></input>
+                </div>
+                <span asp-validation-for="Key.Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-5 offset-3">
+                    @*Llamamos al partial view*@
+                    <partial name="_EditAndBackToListButton" model="Model.Key.Id" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
+

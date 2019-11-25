@@ -10,12 +10,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Brander</title>
 
-    @*añadimos font asome aca*@
-    <script src="https://kit.fontawesome.com/43d590f844.js"></script>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        @*<script src="https://kit.fontawesome.com/43d590f844.js"></script>*@
+        <link rel="stylesheet" href="~/css/vegas.css">
+
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    
+        <!-- ==========================
+        CSS
+    =========================== -->
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="~/css/animate.css" rel="stylesheet" type="text/css">
+        <link href="~/css/owl.carousel.css" rel="stylesheet" type="text/css">
+        <link href="~/css/owl.theme.css" rel="stylesheet" type="text/css">
+        <link href="~/css/owl.transitions.css" rel="stylesheet" type="text/css">
+        <link href="~/css/creative-brands.css" rel="stylesheet" type="text/css">
+        <link href="~/css/jquery.vegas.min.css" rel="stylesheet" type="text/css">
+        <link href="~/css/magnific-popup.css" rel="stylesheet" type="text/css">
+        <link href="~/css/custom.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -23,12 +38,12 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
-        @*<script src="https://kit.fontawesome.com/43d590f844.js"></script>*@
+
     </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
+
 </head>
-<body class="search-background">
-    <header>
+<body>
+    <header class="navbar navbar-default navbar-fixed-top">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Brander</a>
@@ -36,49 +51,58 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav">
 
                         @if (User.IsInRole(SD.ManagerUser))
                         {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <li class="nav-item dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropDownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
                                     Gestión de contenido
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="Category" asp-area="Admin"> Categoria</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="SubCategory" asp-area="Admin"> Sub categoria</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="Game" asp-area="Admin"> Juegos</a>
-                                    <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Admin"> Usuarios</a>
-                                </div>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-action="Index" asp-controller="Category" asp-area="Admin"><i class="fa fa-plus"></i> Categoria</a></li>
+                                    <li><a asp-action="Index" asp-controller="SubCategory" asp-area="Admin"><i class="fa fa-plus"></i> Sub categoria</a></li>
+                                    <li><a asp-action="Index" asp-controller="Game" asp-area="Admin"><i class="fa fa-plus"></i> Juegos</a></li>
+                                    <li><a asp-action="Index" asp-controller="User" asp-area="Admin"><i class="fa fa-plus"></i> Usuarios</a></li>
+                                    <li><a asp-action="Index" asp-controller="Supplier" asp-area="Admin"><i class="fa fa-plus"></i> Proveedores</a></li>
+                                    <li><a asp-action="Index" asp-controller="Stock" asp-area="Admin"><i class="fa fa-plus"></i> Stock</a></li>
+                                    <li><a asp-action="Index" asp-controller="Key" asp-area="Admin"><i class="fa fa-plus"></i> Keys</a></li>
+                                </ul>
                             </li>
                         }
-
-                        @if (HttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount) != null)
-                        {
-                            <li style="color:white">
-                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
-                                    @{
-                                        var count = HttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount);
-                                    }
-                                    <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
-                                </a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li style="color:white">
-                                <a href="#" class="nav-link">
-                                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
-                                </a>
-                            </li>
-                        }
-
-
                     </ul>
+                    <div>
+                        <partial name="_LoginPartial" />
+                        </div>
+
+                        <div class="pull-right navbar-buttons hidden-xs">
+
+                            @if (HttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount) != null)
+                            {
+                                <ol style="color:white">
+                                    <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
+                                        @{
+                                            var count = HttpContextAccessor.HttpContext.Session.GetInt32(@SD.ssShoppingCartCount);
+                                        }
+                                        <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                                    </a>
+                                </ol>
+                            }
+                            else
+                            {
+                                <ol style="color:white">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                                    </a>
+                                </ol>
+                            }
+
+
+                        </div>
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
     <div class="container">
@@ -92,30 +116,56 @@
         <div class="container">
             &copy; 2019 - Brander - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+
     </footer>
 
     <environment include="Development">
         <script src="https://cdn.tiny.cloud/1/xmu9wpotut0kd5iyenmk1m5b10lbp65i0blu36xn1c2u4toj/tinymce/5/tinymce.min.js"></script>
+        <script src="https://kit.fontawesome.com/43d590f844.js"></script>
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://cdn.tiny.cloud/1/xmu9wpotut0kd5iyenmk1m5b10lbp65i0blu36xn1c2u4toj/tinymce/5/tinymce.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        <script src="../../../code.jquery.com/jquery-latest.min.js"></script>
+        <script src="`~/js/bootstrap.min.js"></script>
+        <script src="`~/js/owl.carousel.js"></script>
+        <script src="`~/js/jquery.magnific-popup.min.js"></script>
+        <script src="`~/js/creative-brands.js"></script>
+        <script src="`~/js/jquery.vegas.min.js"></script>
+        <script src="`~/js/twitterFetcher_min.js"></script>
+        <script src="`~/js/jquery.countdown.min.js"></script>
+        <script src="`~/js/custom.js"></script>
+        <script src="`~/js/vegas.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript">
+            $('#vegas-slide').vegas({
+                slides: [
+                    { src: '~/img/b1.jpg' },
+                    { src: '~/img/b2.jpg' },
+                    { src: '~/img/b3.jpg' },
+                    { src: '~/img/b4.jpg' },
+                    { src: '~/img/b5.jpg' },
+                    { src: '~/img/b6.jpg' },
+                    { src: '~/img/b7.jpg' }
+                ]
+            });
         </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
-        </script>
     </environment>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+<environment exclude="Development">
+    <script src="https://cdn.tiny.cloud/1/xmu9wpotut0kd5iyenmk1m5b10lbp65i0blu36xn1c2u4toj/tinymce/5/tinymce.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery"
+            crossorigin="anonymous"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+            crossorigin="anonymous"
+            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+    </script>
+</environment>
+<script src="~/js/site.js" asp-append-version="true"></script>
 
-    @RenderSection("Scripts", required: false)
+@RenderSection("Scripts", required: false)
 </body>
 </html>

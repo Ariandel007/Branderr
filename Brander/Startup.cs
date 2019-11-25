@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Brander.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Brander.Utility;
+using Stripe;
 
 namespace Brander
 {
@@ -45,6 +47,9 @@ namespace Brander
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            //conexion a Stripe
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
+
             //sesiones
             services.AddSession(options =>
             {
@@ -58,6 +63,9 @@ namespace Brander
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

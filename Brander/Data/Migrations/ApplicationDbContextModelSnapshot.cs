@@ -112,6 +112,8 @@ namespace Brander.Data.Migrations
 
                     b.Property<int>("GameId");
 
+                    b.Property<double>("Price");
+
                     b.Property<int>("StockId");
 
                     b.HasKey("Id");
@@ -129,8 +131,6 @@ namespace Brander.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CouponId");
-
                     b.Property<double>("IGV");
 
                     b.Property<DateTime>("OrderDate");
@@ -139,11 +139,16 @@ namespace Brander.Data.Migrations
 
                     b.Property<double>("OrderTotalOriginal");
 
-                    b.Property<bool>("PaymentStatus");
+                    b.Property<string>("PaymentStatus");
+
+                    b.Property<string>("TransactionId");
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CouponId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Order");
                 });
@@ -154,13 +159,21 @@ namespace Brander.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("KeyId");
+                    b.Property<int>("Count");
+
+                    b.Property<int>("GameId");
+
+                    b.Property<int?>("MenuItemId");
+
+                    b.Property<string>("Name");
 
                     b.Property<int>("OrderId");
 
+                    b.Property<double>("Price");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("KeyId");
+                    b.HasIndex("MenuItemId");
 
                     b.HasIndex("OrderId");
 
@@ -179,6 +192,8 @@ namespace Brander.Data.Migrations
 
                     b.Property<int>("GameId");
 
+                    b.Property<int>("KeyId");
+
                     b.HasKey("Id");
 
                     b.ToTable("ShoppingCart");
@@ -191,6 +206,9 @@ namespace Brander.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Date");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<double>("Price");
 
@@ -459,18 +477,17 @@ namespace Brander.Data.Migrations
 
             modelBuilder.Entity("Brander.Models.Order", b =>
                 {
-                    b.HasOne("Brander.Models.Coupon", "Coupon")
+                    b.HasOne("Brander.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("CouponId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Brander.Models.OrderDetails", b =>
                 {
-                    b.HasOne("Brander.Models.Key", "Key")
+                    b.HasOne("Brander.Models.Game", "GameItem")
                         .WithMany()
-                        .HasForeignKey("KeyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MenuItemId");
 
                     b.HasOne("Brander.Models.Order", "Order")
                         .WithMany()

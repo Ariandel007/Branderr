@@ -7,10 +7,17 @@
 
 
 <br />
-<div class="border backgroundWhite">
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="border container">
     <div class="row">
         <div class="col-6">
-            <h2 class="text-info">Lista de Categoria</h2>
+            <h2 class="text-white">Lista de Categoria</h2>
         </div>
         <div class="col-6 text-right">
             @*Llamando a la partial view*@
@@ -21,39 +28,41 @@
 
     <div>
         @*El Count() sirve para saber si tabla esta vacio o no*@
-    @if (Model.Count() > 0)
-    {
-        <table class="table table-striped border">
-            <tr class="table-secondary">
-                <th>
-                    @*para mostara el nombre de la columna asigando(aca lo cambie el modelo con un [DisplaName])*@
-                    @Html.DisplayNameFor(m => m.Name)
-                </th>
-                <th></th>
-                <th></th>
-            </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @*Para mostrar el contenido de la columna*@
-                    @Html.DisplayFor(m => item.Name)
-                </td>
-                @*Llamamos al partial view que tiene las opciones de edicion,detalles y eliminacion y con el tag model le pasamos la id*@
-                <td>
-                    <partial name="_TableButtonpartial" model="item.Id" />
-                </td>
-            </tr>
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped border table-light">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @*para mostara el nombre de la columna asigando(aca lo cambie el modelo con un [DisplaName])*@
+                            @Html.DisplayNameFor(m => m.Name)
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @*Para mostrar el contenido de la columna*@
+                                @Html.DisplayFor(m => item.Name)
+                            </td>
+                            @*Llamamos al partial view que tiene las opciones de edicion,detalles y eliminacion y con el tag model le pasamos la id*@
+                            <td>
+                                <partial name="_TableButtonpartial" model="item.Id" />
+                            </td>
+                        </tr>
+                    }
+                </thead>
+            </table>
         }
-        </table>
-    }
-    else
-    {
-        <div>
-            <p>
-                No existe ninguna categoria
-            </p>
-        </div>
-    }
-</div>
+        else
+        {
+            <div class="text-light">
+                <p>
+                    No existe ninguna categoria
+                </p>
+            </div>
+        }
+    </div>
 </div>

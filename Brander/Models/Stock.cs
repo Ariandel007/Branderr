@@ -14,6 +14,10 @@ namespace Brander.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Nombre")]
+        public string Name { get; set; }
+
+        [Required]
         [Display(Name = "Fecha")]
         public DateTime Date { get; set; }
 

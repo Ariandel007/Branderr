@@ -20,6 +20,12 @@ namespace Brander.Models
         [Display(Name = "IGV")]
         public double IGV { get; set; }
 
+        [Required]
+        public string UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         [Display(Name = "TotalOrdenOriginal")]
         public double OrderTotalOriginal { get; set; }
 
@@ -27,17 +33,21 @@ namespace Brander.Models
         public double OrderTotal { get; set; }
 
         [Display(Name = "EstadoPago")]
-        public bool PaymentStatus { get; set; }
+        public string PaymentStatus { get; set; }
+        public string TransactionId { get; set; }
 
 
 
 
-        [Display(Name = "Cupon")]
-        public int CouponId { get; set; }
+        //[Display(Name = "Cupon")]
+        //public int CouponId { get; set; }
 
-        [ForeignKey("CouponId")]
-        public virtual Coupon Coupon { get; set; }
+        //[ForeignKey("CouponId")]
+        //public virtual Coupon Coupon { get; set; }
 
+        //[Display(Name = "Codigo Cupon")]
+        //public string CouponCode { get; set; }
+        //public double CouponCodeDiscount { get; set; }
 
     }
 }

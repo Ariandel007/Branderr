@@ -22,9 +22,25 @@ namespace Brander.Models
         public virtual Order Order { get; set; }
 
         [Display(Name = "Key")]
-        public int KeyId { get; set; }
+        //public int KeyId { get; set; }
 
-        [ForeignKey("KeyId")]
-        public virtual Key Key { get; set; }
+        //[ForeignKey("KeyId")]
+        //public virtual Key Key { get; set; }
+
+
+        [Required]
+        public int GameId { get; set; }
+
+        [ForeignKey("MenuItemId")]
+        public virtual Game GameItem { get; set; }
+
+        public int Count { get; set; }
+
+        public string Name { get; set; }
+        //public string Description { get; set; }
+
+        [Required]
+        public double Price { get; set; }
+
     }
 }

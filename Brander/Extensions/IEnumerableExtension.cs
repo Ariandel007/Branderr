@@ -11,7 +11,7 @@ namespace Brander.Extensions
         //seleccionar la lista de items
         public static IEnumerable<SelectListItem> ToSelectedItem<T>(this IEnumerable<T> items, int selectedValue)
         {
-            return from item in items
+             return from item in items
                    select new SelectListItem
                    {
                        Text = item.GetPropetyValue("Name"),

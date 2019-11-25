@@ -39,7 +39,7 @@ namespace Brander.Areas.Identity.Pages.Account
             }
             else
             {
-                return RedirectToPage("Cerrar sesión");
+                return RedirectToPage("Logout");
             }
         }
     }

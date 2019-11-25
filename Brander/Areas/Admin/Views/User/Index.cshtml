@@ -5,16 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <br />
 <br />
-<div class="border backgroundWhite">
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="border container">
     <div class="row">
         <div class="col-6">
-            <h2 class="text-info"> Lista de usuarios</h2>
+            <h2 class="text-white"> Lista de usuarios</h2>
         </div>
         <div class="col-6 text-right">
-            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-info"><i class="fas fa-plus"></i> &nbsp; Nuevo registro</a>
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Nuevo registro</a>
         </div>
     </div>
     <br />
@@ -47,13 +52,13 @@
 
                             @if (item.LockoutEnd == null || item.LockoutEnd < DateTime.Now)
                             {
-                                <a class="btn btn-success text-white" asp-action="Lock" asp-route-id="@item.Id">
+                                <a class="btn btn-primary" asp-action="Lock" asp-route-id="@item.Id">
                                     <i class="fas fa-lock-open"></i>
                                 </a>
                             }
                             else
                             {
-                                <a class="btn btn-danger text-white" asp-action="UnLock" asp-route-id="@item.Id">
+                                <a class="btn btn-inverse" asp-action="UnLock" asp-route-id="@item.Id">
                                     <i class="fas fa-lock"></i>
                                 </a>
                             }

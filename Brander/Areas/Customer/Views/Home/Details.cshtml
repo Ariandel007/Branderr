@@ -7,7 +7,7 @@
 }
 
 <br />
-<h2 class="text-info">Detalles</h2>
+<h2 class="text-white">Detalles</h2>
 <br />
 
 <form method="post">
@@ -20,7 +20,7 @@
         <div class="col-md-8">
             <div class="form-group row">
                 <div class="col-md-4">
-                    <label asp-for="Game.Name" class="text-info font-weight-bold"></label>
+                    <label asp-for="Game.Name" class="text-dark font-weight-bold"></label>
                 </div>
                 <div class="col-md-8">
                     <input asp-for="Game.Name" readonly class="form-control" />
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-4">
-                    <label asp-for="Game.Description" class="text-info font-weight-bold"></label>
+                    <label asp-for="Game.Description" class="text-dark font-weight-bold"></label>
                 </div>
                 <div class="col-md-8">
                     <div class="border p-2">
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-4">
-                    <label asp-for="Game.Price" class="text-info font-weight-bold"></label>
+                    <label asp-for="Game.Price" class="text-dark font-weight-bold"></label>
                 </div>
                 <div class="col-md-8">
                     <input asp-for="Game.Price" readonly class="form-control" />
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-4">
-                    <label asp-for="Game.CategoryId" class="text-info font-weight-bold"></label>
+                    <label asp-for="Game.CategoryId" class="text-dark font-weight-bold"></label>
                 </div>
                 <div class="col-md-8">
                     <input asp-for="Game.Category.Name" readonly class="form-control" />
@@ -55,7 +55,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-4">
-                    <label asp-for="Game.SubCategoryId" class="text-info font-weight-bold"></label>
+                    <label asp-for="Game.SubCategoryId" class="text-dark font-weight-bold"></label>
                 </div>
                 <div class="col-md-8">
                     <input asp-for="Game.SubCategory.Name" readonly class="form-control" />
@@ -63,7 +63,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-4">
-                    <label asp-for="Count" class="text-info font-weight-bold"></label>
+                    <label asp-for="Count" class="text-dark font-weight-bold"></label>
                 </div>
                 <div class="col-md-8">
                     <input asp-for="Count" class="form-control" />
@@ -74,10 +74,10 @@
                 <div class="col-md-4">
                 </div>
                 <div class="col-md-4">
-                    <a asp-action="Index" class="btn btn-success form-control">Regresar</a>
+                    <a asp-action="Index" class="btn btn-inverse form-control text-white">Regresar</a>
                 </div>
                 <div class="col-md-4">
-                    <button type="submit" value="Add to Cart" class="btn btn-primary form-control">Añadir al carrito</button>
+                    <button type="submit" value="Add to Cart" class="btn btn-primary form-control text-white">Añadir al carrito</button>
                 </div>
             </div>
         </div>

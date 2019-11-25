@@ -6,25 +6,25 @@
 
 
 
-<div class="container" style="margin-top:30px">
-        <div class="row">
-            <div class="col-sm-4">
+<div class="container hidden-xs" style="margin-top:30px" id="vegas-slide">
+        <div class="row header-title">
+            <div class="col-sm-4 text-white">
 
                 <h3>Seleccionar</h3>
 
-                <div class="list-group list-group-root card">
+                <div class="dropdown">
 
-                    <a href="#item-1" class="list-group-item " data-toggle="collapse">
+                    <a href="#item-1" class="dropdown-toggle " data-toggle="collapse">
                         <i class="fas fa-angle-right mr-2"></i>Categoria
                     </a>
                     <div class="list-group collapse" id="item-1">
 
-                        <ul id="game-filters" class="game-filter-list list-inline">
-                            <li class="active btn btn-secondary ml-1 mr-1" data-filter=".menu-restaurant">Mostrar Todo</li>
+                        <ul id="game-filters" class="game-filter-list list-inline ">
+                            <li data-filter=".menu-restaurant">Mostrar Todo</li>
 
                             @foreach (var item in Model.Category)
                             {
-                                <li class="ml-1 mr-1" data-filter=".@item.Name.Replace(" ",string.Empty)">@item.Name</li>
+                                <li data-filter=".@item.Name.Replace(" ",string.Empty)">@item.Name</li>
                             }
                         </ul>
 
@@ -40,7 +40,7 @@
 
                 <hr class="d-sm-none">
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 text-white">
                 <h2>Tendencias</h2>
 
                 <div id="demo" class="carousel slide col-8 border-right" data-ride="carousel">

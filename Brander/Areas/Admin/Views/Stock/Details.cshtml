@@ -1,0 +1,69 @@
+﻿@model Brander.Models.Stock
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<h2 class="text-white">Stock Detalles</h2>
+<br />
+
+<div class="backgroundWhite rounded">
+    <fieldset disabled>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name" class="custom-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Date" class="custom-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Date" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Price" class="custom-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Price" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Quantity" class="custom-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Quantity" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Region" class="custom-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Region" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Supplier.CompanyName" class="custom-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Supplier.CompanyName" class="form-control" />
+            </div>
+        </div>
+    </fieldset>
+    <br />
+    <div class="form-group row">
+        <div class="col-5 offset-2">
+            <partial name="_DetailsAndBackToListButton" model="Model.Id" />
+        </div>
+    </div>
+</div>
+

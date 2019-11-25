@@ -26,8 +26,15 @@ namespace Brander.Models
         public int GameId { get; set; }
 
         [NotMapped]
-        [ForeignKey("MenuItemId")]
+        [ForeignKey("GameId")]
         public virtual Game Game { get; set; }
+
+        public int KeyId { get; set; }
+
+
+        [NotMapped]
+        [ForeignKey("MenuItemId")]
+        public virtual Key Key { get; set; }
 
 
 
