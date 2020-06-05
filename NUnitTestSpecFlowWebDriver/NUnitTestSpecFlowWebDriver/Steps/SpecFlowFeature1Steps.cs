@@ -4,36 +4,36 @@ using OpenQA.Selenium.Chrome;
 using System;
 using TechTalk.SpecFlow;
 
-namespace NUnitTestSpectFlow.Steps
+namespace NUnitTestSpecFlowWebDriver.Steps
 {
     [TestFixture]
+    [Order(1)]
     [Binding]
     public class SpecFlowFeature1Steps
     {
-
-        IWebDriver driver = new ChromeDriver();
-        [Test]
+       
+        [Test,Order(1)]
         [Given(@"Open the Chrome and launch the application")]
         public void GivenOpenTheChromeAndLaunchTheApplication()
         {
             //ScenarioContext.Current.Pending();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://localhost:5001/Identity/Account/Login");
+            GolbalDriver.driver2().Manage().Window.Maximize();
+            GolbalDriver.driver2().Navigate().GoToUrl("https://localhost:5001/Identity/Account/Login");
         }
-        [Test]
+        [Test,Order(2)]
         [When(@"Enter the Email and Password")]
         public void WhenEnterTheEmailAndPassword()
         {
             //ScenarioContext.Current.Pending();
-            driver.FindElement(By.Id("Input_Email")).SendKeys("braulio123@gmail.com");
-            driver.FindElement(By.Id("Input_Password")).SendKeys("Passw0rd$");
+            GolbalDriver.driver2().FindElement(By.Id("Input_Email")).SendKeys("braulio123@gmail.com");
+            GolbalDriver.driver2().FindElement(By.Id("Input_Password")).SendKeys("Passw0rd$");
         }
-        [Test]
+        [Test,Order(3)]
         [Then(@"the result should be the user logged")]
         public void ThenTheResultShouldBeTheUserLogged()
         {
             //ScenarioContext.Current.Pending();
-            driver.FindElement(By.Id("login_button")).Click();
+            GolbalDriver.driver2().FindElement(By.Id("login_button")).Click();
         }
     }
 }

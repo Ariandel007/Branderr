@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlowWithRunner2.Feature
+namespace NUnitTestSpecFlowWebDriver.Feature
 {
     using TechTalk.SpecFlow;
     using System;
@@ -19,22 +19,22 @@ namespace SpecFlowWithRunner2.Feature
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("LoginFeature", Description="\tValidate functionality on login page of Application", SourceFile="Feature\\LoginFeature.feature", SourceLine=0)]
-    public partial class LoginFeatureFeature
+    [TechTalk.SpecRun.FeatureAttribute("SpecFlowFeature1", Description="\tValidate functionality on login page of Application", SourceFile="Feature\\SpecFlowFeature1.feature", SourceLine=0)]
+    public partial class SpecFlowFeature1Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "LoginFeature.feature"
+#line 1 "SpecFlowFeature1.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LoginFeature", "\tValidate functionality on login page of Application", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SpecFlowFeature1", "\tValidate functionality on login page of Application", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -1,0 +1,17 @@
+﻿2020-06-05T03:08:18.1643682-05:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2020-06-05T03:08:18.1645669-05:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.2.31 in Framework netcore31 in x64 mode execution started
+2020-06-05T03:08:18.1645705-05:00;VSTestExecutionThread;Info;TestAdapter Location: D:\NUnitTestSpecFlowWebDriver\NUnitTestSpecFlowWebDriver\bin\Debug\netcoreapp3.1\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2020-06-05T03:08:18.2076864-05:00;VSTestExecutionThread;Info;SpecRun: running tests in D:\NUnitTestSpecFlowWebDriver\NUnitTestSpecFlowWebDriver\bin\Debug\netcoreapp3.1\NUnitTestSpecFlowWebDriver.dll
+2020-06-05T03:08:18.2078753-05:00;VSTestExecutionThread;Info;Output folder configured to "D:\NUnitTestSpecFlowWebDriver\TestResults" (default)
+2020-06-05T03:08:18.2079355-05:00;VSTestExecutionThread;Info;Profile: 
+2020-06-05T03:08:18.2504110-05:00;VSTestExecutionThread;Info;Log file path: D:\NUnitTestSpecFlowWebDriver\TestResults\Unnamed project__2020-06-05T030818.log
+2020-06-05T03:08:18.2576719-05:00;Thread#12;Info;Checking activation
+2020-06-05T03:08:19.8407940-05:00;Thread#12;Error;No tests executed (activation needed)
+2020-06-05T03:08:19.8598500-05:00:Total: 0
+2020-06-05T03:08:19.8629217-05:00:Succeeded: 0
+2020-06-05T03:08:19.8633283-05:00:Ignored: 0
+2020-06-05T03:08:19.8636093-05:00:Pending: 0
+2020-06-05T03:08:19.8648625-05:00:Skipped: 0
+2020-06-05T03:08:19.8653720-05:00:Failed: 0
+2020-06-05T03:08:19.8753698-05:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+========== End of log file ==========
