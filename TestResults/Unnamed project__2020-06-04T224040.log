@@ -1,0 +1,17 @@
+﻿2020-06-04T22:40:40.6286604-05:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2020-06-04T22:40:40.6288234-05:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.2.31 in Framework netcore31 in x64 mode execution started
+2020-06-04T22:40:40.6288267-05:00;VSTestExecutionThread;Info;TestAdapter Location: D:\Documentos\Documents\Cursos 7to ciclo\Diseño de Experimentos de ISW\TRABAJOFINAL\Branderr\SpecFlowBrander\bin\Debug\netcoreapp3.1\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2020-06-04T22:40:40.6599954-05:00;VSTestExecutionThread;Info;SpecRun: running tests in D:\Documentos\Documents\Cursos 7to ciclo\Diseño de Experimentos de ISW\TRABAJOFINAL\Branderr\SpecFlowBrander\bin\Debug\netcoreapp3.1\SpecFlowBrander.dll
+2020-06-04T22:40:40.6602033-05:00;VSTestExecutionThread;Info;Output folder configured to "D:\Documentos\Documents\Cursos 7to ciclo\Diseño de Experimentos de ISW\TRABAJOFINAL\Branderr\TestResults" (default)
+2020-06-04T22:40:40.6602716-05:00;VSTestExecutionThread;Info;Profile: 
+2020-06-04T22:40:40.7195157-05:00;VSTestExecutionThread;Info;Log file path: D:\Documentos\Documents\Cursos 7to ciclo\Diseño de Experimentos de ISW\TRABAJOFINAL\Branderr\TestResults\Unnamed project__2020-06-04T224040.log
+2020-06-04T22:40:40.7261569-05:00;Thread#12;Info;Checking activation
+2020-06-04T22:40:42.3954445-05:00;Thread#12;Error;No tests executed (activation needed)
+2020-06-04T22:40:42.4108553-05:00:Total: 0
+2020-06-04T22:40:42.4126603-05:00:Succeeded: 0
+2020-06-04T22:40:42.4129146-05:00:Ignored: 0
+2020-06-04T22:40:42.4131281-05:00:Pending: 0
+2020-06-04T22:40:42.4137078-05:00:Skipped: 0
+2020-06-04T22:40:42.4139478-05:00:Failed: 0
+2020-06-04T22:40:42.4196133-05:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+========== End of log file ==========
